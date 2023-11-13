@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STACK HTML, CSS y JS</title>
+   <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body class="fondo">
+    <h1 class="Titulo">CRUD de datos</h1>
+    <form onsubmit="manejarFormulario(event)">
+      <input type="text" name="nombre" id="nombre" placeholder="nombre" />
+      <input type="text" name="apellido" id="apellido" placeholder="apellido" />
+      <input type="number" name="edad" id="edad" placeholder="edad" />
+      <input type="submit" value="Agregar" id="inputSubmit"/>
+      <input type="button" value="Borrar" id="Borrar"  disabled   onclick=" borrarAlumno()">
+    </form>
+    <hr />
+
+    <ul id="listadoAlumnos"></ul>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
