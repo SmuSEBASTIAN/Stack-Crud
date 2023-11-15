@@ -5,11 +5,15 @@
 // (R)read - Leer un elemento del array
 // (U)pdate - actualizar el objeto dentro del array
 // (D)elete - borrar un elemento de la ED (array)
+let valor = 0
 let alumnos = [];
 let seleccionado = -1;
 const guardarLS = (elementos) => {
   localStorage.setItem("alumnos", JSON.stringify(elementos));
 };
+
+const Siguiente = document.getElementById("siguiente");
+const Regresar = document.getElementById("regresar")
 
 
 function createAlumno(alumno) {
@@ -46,11 +50,30 @@ for (let i = alumnos.length -1 ; i >= 0; i--) {
   }
 }
 
-function listadoAlumnos() {
+function listadoAlumnos(valor) {
 
   const listadoAlumnos = document.getElementById("listadoAlumnos");
   listadoAlumnos.innerHTML = "";
-  alumnos.forEach((alumno, index) => {
+  if(valor<=LargoARRAY()){
+    divirArray(alumnos)[valor].forEach((alumno, index) => {
+      listadoAlumnos.innerHTML +=
+      `
+        <li>
+          <input type="checkbox" id="checka" onchange="manejarCheck(${index})"class="checkboxPersonalizado" ${
+        alumno.marcado ? "checked" : ""
+      }>
+          <span onclick="onClickLi(${index})">
+            ${alumno.apellido}, ${alumno.nombre} - edad: ${alumno.edad}
+          </span>
+        </li>
+      `;
+      console.log(valor)
+    });
+  }
+  valor=0;
+  }
+  
+ /* alumnos.forEach((alumno, index) => {
     listadoAlumnos.innerHTML += `
       <li>
         <input type="checkbox" id="checka" onchange="manejarCheck(${index})"class="checkboxPersonalizado" ${
@@ -63,7 +86,7 @@ function listadoAlumnos() {
     `;
   });
 }
-
+*/
 function manejarFormulario(event) {
   event.preventDefault();
   const nombre = document.getElementById("nombre");
@@ -151,7 +174,31 @@ function  controlBotonBorrar(Num) {
     controlBotonBorrar(2);
      }
 
-
  
-
+function divirArray(Listado) {
+  let DivAlumno= []
+  for (let i = 0; i < Listado.length; i+=4) {
+      pedacito= Listado.slice(i,i+4);
+      DivAlumno.push(pedacito)
     
+  }
+  return DivAlumno
+}
+
+function LargoARRAY() {
+let largo = alumnos.length/4
+return largo
+}
+
+
+
+function sumar() {
+  valor+=1
+  listadoAlumnos(valor+1)
+}
+
+function restar() {
+  valor-=1
+  listadoAlumnos(valor-1)
+}
+/* Falta Corregir Paginado con array y que el seleccionar todo sea por lista mostrada y no todo el array*/
