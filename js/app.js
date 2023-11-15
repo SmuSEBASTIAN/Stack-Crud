@@ -30,6 +30,7 @@ function onClickLi(index) {
   apellido.value = alumnos[index].apellido;
   edad.value = alumnos[index].edad;
   controlBotonBorrar(1);
+ 
 }
 
 function manejarCheck(index) {
@@ -52,7 +53,7 @@ function listadoAlumnos() {
   alumnos.forEach((alumno, index) => {
     listadoAlumnos.innerHTML += `
       <li>
-        <input type="checkbox" onchange="manejarCheck(${index})"class="checkboxPersonalizado" ${
+        <input type="checkbox" id="checka" onchange="manejarCheck(${index})"class="checkboxPersonalizado" ${
       alumno.marcado ? "checked" : ""
     }>
         <span onclick="onClickLi(${index})">
@@ -69,7 +70,6 @@ function manejarFormulario(event) {
   const apellido = document.getElementById("apellido");
   const edad = document.getElementById("edad");
   const Borrar = document.getElementById("Borrar");
- 
   if (seleccionado === -1) {
     createAlumno({
       nombre: nombre.value,
@@ -134,3 +134,24 @@ function  controlBotonBorrar(Num) {
    BTN DISABLED CUANDO NO HAYA NINGUN CHECK
    CHECK DISABLE CUANDO ESTE EL BOTON 
    */
+
+   function SeleccionarTodo(index) {
+
+    const checkboxes = document.querySelectorAll('input[type=checkbox]')
+    checkboxes.forEach(checkbox => {
+    checkbox.checked = true;
+     
+    });
+    
+     for (let i = 0; i < alumnos.length; i++) {
+      if (alumnos[i].marcado === false) {
+        alumnos[i].marcado= true
+      }
+    }
+    controlBotonBorrar(2);
+     }
+
+
+ 
+
+    
