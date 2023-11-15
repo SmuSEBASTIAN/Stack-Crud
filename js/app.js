@@ -190,7 +190,7 @@ return largo
 
 function sumar() {
   let contador= LargoARRAY();
-  if (contador === valor){
+  if (valor > contador){
     valor= LargoARRAY()-1;
     listadoAlumnos(valor)
   }else
