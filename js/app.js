@@ -54,7 +54,6 @@ function listadoAlumnos(valor) {
 
   const listadoAlumnos = document.getElementById("listadoAlumnos");
   listadoAlumnos.innerHTML = "";
-  if(valor<=LargoARRAY()){
     divirArray(alumnos)[valor].forEach((alumno, index) => {
       listadoAlumnos.innerHTML +=
       `
@@ -67,10 +66,7 @@ function listadoAlumnos(valor) {
           </span>
         </li>
       `;
-      console.log(valor)
     });
-  }
-  valor=0;
   }
   
  /* alumnos.forEach((alumno, index) => {
@@ -115,7 +111,7 @@ function manejarFormulario(event) {
   apellido.value = "";
   edad.value = "";
   nombre.focus();
-  listadoAlumnos();
+  listadoAlumnos(valor);
 
   /* prueba*/ 
   controlBotonBorrar(2)
@@ -150,7 +146,7 @@ function  controlBotonBorrar(Num) {
   };
 
   cargarLS()
-  listadoAlumnos()
+  listadoAlumnos(valor)
 
 
   /** PAGINADO
@@ -193,12 +189,24 @@ return largo
 
 
 function sumar() {
-  valor+=1
-  listadoAlumnos(valor+1)
+  let contador= LargoARRAY();
+  if (contador === valor){
+    valor= LargoARRAY()-1;
+    listadoAlumnos(valor)
+  }else
+  valor= valor + 1
+  listadoAlumnos(valor)
+  
+  
 }
 
 function restar() {
-  valor-=1
-  listadoAlumnos(valor-1)
+  let contador= LargoARRAY();
+  if(contador<= valor){
+    listadoAlumnos(valor)
+    valor= valor - 1;
+  }else 
+  valor=0
+  listadoAlumnos(valor)
 }
 /* Falta Corregir Paginado con array y que el seleccionar todo sea por lista mostrada y no todo el array*/
